@@ -14,6 +14,7 @@
       Add a new board
     </h2>
 
+    <% if current_user != nil %>
     <form action="/insert_board" method="post">
       <div>
         <label for="name_box">
@@ -27,9 +28,11 @@
         Add board
       </button>
     </form>
+    <% else %>
   </div>
 </div>
-
+      <p>You must <a href="/users/sign_in">sign in</a> to add a board.</p>
+    <% end %>
 <hr>
 
 <ul>
@@ -38,6 +41,11 @@
       <a href="/boards/<%= a_board.id %>">
         <%= a_board.name %>
       </a>
+      <div>
+        <%= matching_users = User.where ({ :id => a_board.user_id }) %>
+        <% the_user = matching_users.at(0) %>
+        <%= the_user %>
+      </div>
     </li>
   <% end %>
 </ul>

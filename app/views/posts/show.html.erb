@@ -12,9 +12,13 @@
       </div>
 
       <div>
+      <% if current_user != nil %>
         <a href="/delete_post/<%= @the_post.id %>">
           Delete post
         </a>
+        <% else %>
+        <p>You must <a href="/users/sign_in">sign in</a> to add a post.</p>
+      <% end %>
       </div>
     </div>
 
